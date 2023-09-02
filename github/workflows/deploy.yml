@@ -18,8 +18,8 @@ jobs:
 
       - name: Deploy to LKE
         run: |
-          kubectl apply -f path/to/your/kubernetes-deployment.yaml
-          kubectl apply -f path/to/your/kubernetes-service.yaml
+          kubectl apply -f k8-deploy.yaml.yaml
+          kubectl apply -f k8-service.yaml
 
       - name: Wait for Deployment
         run: |

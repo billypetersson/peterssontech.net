@@ -1,0 +1,27 @@
+name: Deploy to LKE
+
+on:
+  push:
+    branches:
+      - main # Adjust the branch as needed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up kubectl
+        uses: engineerd/setup-kubectl@v1
+
+      - name: Deploy to LKE
+        run: |
+          kubectl apply -f path/to/your/kubernetes-deployment.yaml
+          kubectl apply -f path/to/your/kubernetes-service.yaml
+
+      - name: Wait for Deployment
+        run: |
+          kubectl rollout status deployment/your-deployment-name -n your-namespace --timeout=10m
+        timeout-minutes: 15

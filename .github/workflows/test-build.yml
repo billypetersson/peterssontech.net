@@ -1,0 +1,72 @@
+name: 🧪 Test Hugo Build
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+      - 'hugo.toml'
+      - 'content/**'
+      - 'layouts/**'
+      - 'static/**'
+
+jobs:
+  test-build:
+    name: 🧪 Test Build Process
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🏗️ Install Hugo CLI
+        run: |
+          HUGO_VERSION="0.147.9"
+          echo "Installing Hugo v${HUGO_VERSION}..."
+          wget -q -O ${{ runner.temp }}/hugo.deb \
+            https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
+          sudo dpkg -i ${{ runner.temp }}/hugo.deb
+
+      - name: ✅ Verify Hugo installation
+        run: |
+          hugo version
+          hugo env
+
+      - name: 🧹 Clean any existing build
+        run: |
+          rm -rf public resources .hugo_build.lock
+
+      - name: 🏗️ Build site
+        run: |
+          echo "Building Hugo site..."
+          hugo --minify --gc --logLevel info
+
+      - name: 🔍 Validate build output
+        run: |
+          echo "Validating build..."
+          
+          if [ ! -d "public" ]; then
+            echo "❌ Public directory not found!"
+            exit 1
+          fi
+          
+          # Check critical files
+          if [ ! -f "public/index.html" ]; then
+            echo "❌ index.html not found!"
+            exit 1
+          fi
+          
+          # Count generated files
+          html_files=$(find public -name "*.html" | wc -l)
+          total_files=$(find public -type f | wc -l)
+          
+          echo "✅ Build successful!"
+          echo "📄 HTML files: $html_files"
+          echo "📁 Total files: $total_files"
+          echo "💾 Build size: $(du -sh public | cut -f1)"
+
+      - name: 📤 Upload test artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-build-${{ github.run_number }}
+          path: public/
+          retention-days: 1

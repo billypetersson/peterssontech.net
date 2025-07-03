@@ -20,20 +20,20 @@
             <div class="footer-social">
                 <h4>Connect</h4>
                 <div class="social-links" role="list">
-                    {{ if .Site.Social.linkedin }}
-                    <a href="{{ .Site.Social.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" role="listitem">
+                    {{ if .Site.Params.social.linkedin }}
+                    <a href="{{ .Site.Params.social.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" role="listitem">
                         <i class="fab fa-linkedin" aria-hidden="true"></i>
                         <span class="sr-only">LinkedIn</span>
                     </a>
                     {{ end }}
-                    {{ if .Site.Social.github }}
-                    <a href="{{ .Site.Social.github }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" role="listitem">
+                    {{ if .Site.Params.social.github }}
+                    <a href="{{ .Site.Params.social.github }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" role="listitem">
                         <i class="fab fa-github" aria-hidden="true"></i>
                         <span class="sr-only">GitHub</span>
                     </a>
                     {{ end }}
-                    {{ if .Site.Social.email }}
-                    <a href="mailto:{{ .Site.Social.email }}" aria-label="Send Email" role="listitem">
+                    {{ if .Site.Params.social.email }}
+                    <a href="mailto:{{ .Site.Params.social.email }}" aria-label="Send Email" role="listitem">
                         <i class="fas fa-envelope" aria-hidden="true"></i>
                         <span class="sr-only">Email</span>
                     </a>

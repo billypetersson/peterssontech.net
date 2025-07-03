@@ -42,7 +42,7 @@ title = 'Billy Petersson - IT Professional Portfolio'
     url = '/contact/'
     weight = 7
 
-[social]
+[params.social]
   linkedin = 'https://linkedin.com/in/billy-petersson'
   github = 'https://github.com/billy-petersson'
   email = 'billy@peterssontech.net'

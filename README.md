@@ -445,7 +445,7 @@ MIT License - Feel free to use this project as a template for your own portfolio
 [![Use This Template](https://img.shields.io/badge/Use%20This%20Template-44CC11?style=for-the-badge&logo=github)](https://github.com/billy-petersson/peterssontech-portfolio/generate)
 [![Star This Repo](https://img.shields.io/badge/⭐%20Star%20This%20Repo-FFD700?style=for-the-badge)](https://github.com/billy-petersson/peterssontech-portfolio)
 
-**Built with ❤️ by Billy Petersson** | **Last Updated**: January 2025
+**Built with ❤️ by Billy Petersson** | **Last Updated**: July 2025
 
 [🌐 Visit Live Site](https://peterssontech.net) • [📧 Contact](mailto:billy@peterssontech.net) • [💼 LinkedIn](https://linkedin.com/in/billy-petersson)
 

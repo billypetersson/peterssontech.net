@@ -112,7 +112,7 @@ hugo --minify
 ## 📁 **Project Structure**
 
 ```
-📦 peterssontech-portfolio/
+📦 peterssontech.net/
 ├── 📄 hugo.toml                 # Hugo configuration
 ├── 📁 content/                  # Markdown content files
 │   ├── 📄 _index.md            # Homepage content

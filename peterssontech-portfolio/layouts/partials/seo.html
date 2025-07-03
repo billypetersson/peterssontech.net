@@ -1,0 +1,142 @@
+<!-- SEO Meta Tags -->
+<meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<meta name="keywords" content="{{ if .Params.tags }}{{ delimit .Params.tags ", " }}{{ else }}{{ delimit .Site.Params.keywords ", " }}{{ end }}">
+<meta name="author" content="{{ .Site.Params.author }}">
+<meta name="robots" content="index, follow">
+<meta name="language" content="{{ .Site.LanguageCode }}">
+<link rel="canonical" href="{{ .Permalink }}">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:title" content="{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}">
+<meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+{{ if .Params.image }}
+<meta property="og:image" content="{{ .Params.image | absURL }}">
+{{ else }}
+<meta property="og:image" content="{{ "/images/og-default.jpg" | absURL }}">
+{{ end }}
+<meta property="og:locale" content="{{ .Site.LanguageCode }}">
+{{ if not .IsHome }}
+<meta property="article:author" content="{{ .Site.Params.author }}">
+{{ if .Date }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+{{ end }}
+{{ if .Lastmod }}
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+{{ end }}
+{{ if .Params.tags }}
+{{ range .Params.tags }}
+<meta property="article:tag" content="{{ . }}">
+{{ end }}
+{{ end }}
+{{ end }}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="{{ .Permalink }}">
+<meta name="twitter:title" content="{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}">
+<meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+{{ if .Params.image }}
+<meta name="twitter:image" content="{{ .Params.image | absURL }}">
+{{ else }}
+<meta name="twitter:image" content="{{ "/images/og-default.jpg" | absURL }}">
+{{ end }}
+<meta name="twitter:creator" content="@billy_petersson">
+<meta name="twitter:site" content="@billy_petersson">
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{{ if .IsHome }}WebSite{{ else if eq .Section "blog" }}BlogPosting{{ else }}WebPage{{ end }}",
+  "name": "{{ if .Title }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}",
+  "headline": "{{ if .Title }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}",
+  "description": "{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}",
+  "url": "{{ .Permalink }}",
+  {{ if .IsHome }}
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ .Site.BaseURL }}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  {{ end }}
+  "author": {
+    "@type": "Person",
+    "name": "{{ .Site.Params.author }}",
+    "url": "{{ .Site.BaseURL }}/about/",
+    "sameAs": [
+      "{{ .Site.Social.linkedin }}",
+      "{{ .Site.Social.github }}"
+    ]
+  },
+  {{ if not .IsHome }}
+  {{ if .Date }}
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+  {{ end }}
+  {{ if .Lastmod }}
+  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+  {{ end }}
+  {{ end }}
+  "publisher": {
+    "@type": "Person",
+    "name": "{{ .Site.Params.author }}",
+    "url": "{{ .Site.BaseURL }}"
+  },
+  {{ if .Params.image }}
+  "image": {
+    "@type": "ImageObject",
+    "url": "{{ .Params.image | absURL }}"
+  },
+  {{ end }}
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  }
+}
+</script>
+
+{{ if .IsHome }}
+<!-- Additional structured data for homepage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ .Site.Params.author }}",
+  "jobTitle": "IT Professional & Software Developer",
+  "description": "{{ .Site.Params.description }}",
+  "url": "{{ .Site.BaseURL }}",
+  "sameAs": [
+    "{{ .Site.Social.linkedin }}",
+    "{{ .Site.Social.github }}"
+  ],
+  "knowsAbout": [
+    "Software Development",
+    "Web Development",
+    "Cloud Computing",
+    "DevOps",
+    "System Administration",
+    "JavaScript",
+    "Python",
+    "React",
+    "Node.js",
+    "AWS",
+    "Kubernetes"
+  ],
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "University of Technology"
+  }
+}
+</script>
+{{ end }}
+
+<!-- DNS Prefetch -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
+<!-- Preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

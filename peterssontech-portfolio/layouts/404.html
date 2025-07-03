@@ -1,0 +1,179 @@
+{{ define "main" }}
+<div class="section" style="padding: 6rem 0;">
+    <div class="container">
+        <div class="error-page">
+            <div class="error-content">
+                <div class="error-number">404</div>
+                <h1 class="error-title">Page Not Found</h1>
+                <p class="error-description">
+                    Sorry, the page you're looking for doesn't exist or has been moved. 
+                    Let's get you back on track.
+                </p>
+                
+                <div class="error-actions">
+                    <a href="/" class="btn btn-primary">
+                        <i class="fas fa-home"></i>
+                        Go Home
+                    </a>
+                    <a href="/blog/" class="btn btn-secondary">
+                        <i class="fas fa-blog"></i>
+                        Read Blog
+                    </a>
+                    <a href="/projects/" class="btn btn-secondary">
+                        <i class="fas fa-folder-open"></i>
+                        View Projects
+                    </a>
+                </div>
+                
+                <div class="error-search">
+                    <h3>Looking for something specific?</h3>
+                    <p>Try these popular pages:</p>
+                    <ul class="popular-links">
+                        <li><a href="/about/">About Me</a></li>
+                        <li><a href="/skills/">Technical Skills</a></li>
+                        <li><a href="/experience/">Work Experience</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="error-illustration">
+                <i class="fas fa-search" style="font-size: 8rem; color: var(--primary-color); opacity: 0.3;"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.error-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    min-height: 60vh;
+}
+
+.error-content {
+    text-align: left;
+}
+
+.error-number {
+    font-size: 8rem;
+    font-weight: 900;
+    color: var(--primary-color);
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.error-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.error-description {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+}
+
+.error-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.error-search h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.error-search p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.popular-links {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.popular-links li {
+    margin: 0;
+}
+
+.popular-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.popular-links a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+.error-illustration {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .error-page {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .error-content {
+        text-align: center;
+    }
+    
+    .error-number {
+        font-size: 6rem;
+    }
+    
+    .error-title {
+        font-size: 2rem;
+    }
+    
+    .error-description {
+        font-size: 1.125rem;
+    }
+    
+    .error-actions {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .error-actions .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .popular-links {
+        grid-template-columns: 1fr;
+    }
+    
+    .error-illustration {
+        order: -1;
+    }
+    
+    .error-illustration i {
+        font-size: 4rem !important;
+    }
+}
+</style>
+{{ end }}

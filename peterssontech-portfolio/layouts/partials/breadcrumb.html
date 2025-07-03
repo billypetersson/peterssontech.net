@@ -1,0 +1,30 @@
+{{ if not .IsHome }}
+<nav aria-label="Breadcrumb" class="breadcrumb">
+    <ol class="breadcrumb-list">
+        <li class="breadcrumb-item">
+            <a href="/" aria-label="Home">
+                <i class="fas fa-home" aria-hidden="true"></i>
+                <span class="sr-only">Home</span>
+            </a>
+        </li>
+        
+        {{ if .Parent }}
+        {{ range .Parent.Ancestors.Reverse }}
+        <li class="breadcrumb-item">
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+        </li>
+        {{ end }}
+        
+        {{ if not .Parent.IsHome }}
+        <li class="breadcrumb-item">
+            <a href="{{ .Parent.Permalink }}">{{ .Parent.Title }}</a>
+        </li>
+        {{ end }}
+        {{ end }}
+        
+        <li class="breadcrumb-item active" aria-current="page">
+            {{ .Title }}
+        </li>
+    </ol>
+</nav>
+{{ end }}

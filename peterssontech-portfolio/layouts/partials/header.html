@@ -1,0 +1,28 @@
+<header class="header" role="banner">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="/" class="brand-link" aria-label="Billy Petersson - Home">
+                    <span class="brand-name">Billy Petersson</span>
+                    <span class="brand-title">IT Professional</span>
+                </a>
+            </div>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu" role="menubar">
+                {{ range .Site.Menus.main }}
+                <li class="nav-item" role="none">
+                    <a href="{{ .URL }}" class="nav-link{{ if $.IsMenuCurrent "main" . }} active{{ end }}" role="menuitem"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>
+                        {{ .Name }}
+                    </a>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+    </nav>
+</header>

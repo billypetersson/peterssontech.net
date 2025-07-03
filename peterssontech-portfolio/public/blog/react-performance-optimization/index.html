@@ -1,0 +1,542 @@
+<!doctype html><html lang=en-us><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Discover essential techniques to optimize React applications for better performance, including code splitting, memoization, and lazy loading"><meta name=keywords content="React,Performance,JavaScript,Frontend,Optimization"><meta name=author content="Billy Petersson"><meta property="og:type" content="website"><meta property="og:url" content="https://peterssontech.net/blog/react-performance-optimization/"><meta property="og:title" content="React Performance Optimization: Best Practices for 2024 | Billy Petersson - IT Professional Portfolio"><meta property="og:description" content="Discover essential techniques to optimize React applications for better performance, including code splitting, memoization, and lazy loading"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://peterssontech.net/blog/react-performance-optimization/"><meta property="twitter:title" content="React Performance Optimization: Best Practices for 2024 | Billy Petersson - IT Professional Portfolio"><meta property="twitter:description" content="Discover essential techniques to optimize React applications for better performance, including code splitting, memoization, and lazy loading"><title>React Performance Optimization: Best Practices for 2024 | Billy Petersson - IT Professional Portfolio</title>
+<meta name=description content="Discover essential techniques to optimize React applications for better performance, including code splitting, memoization, and lazy loading"><meta name=keywords content="React,Performance,JavaScript,Frontend,Optimization"><meta name=author content="Billy Petersson"><meta name=robots content="index, follow"><meta name=language content="en-us"><link rel=canonical href=https://peterssontech.net/blog/react-performance-optimization/><meta property="og:type" content="article"><meta property="og:url" content="https://peterssontech.net/blog/react-performance-optimization/"><meta property="og:title" content="React Performance Optimization: Best Practices for 2024 | Billy Petersson - IT Professional Portfolio"><meta property="og:description" content="Discover essential techniques to optimize React applications for better performance, including code splitting, memoization, and lazy loading"><meta property="og:site_name" content="Billy Petersson - IT Professional Portfolio"><meta property="og:image" content="https://peterssontech.net/images/og-default.jpg"><meta property="og:locale" content="en-us"><meta property="article:author" content="Billy Petersson"><meta property="article:published_time" content="2024-12-08T00:00:00Z"><meta property="article:modified_time" content="2024-12-08T00:00:00Z"><meta property="article:tag" content="React"><meta property="article:tag" content="Performance"><meta property="article:tag" content="JavaScript"><meta property="article:tag" content="Frontend"><meta property="article:tag" content="Optimization"><meta name=twitter:card content="summary_large_image"><meta name=twitter:url content="https://peterssontech.net/blog/react-performance-optimization/"><meta name=twitter:title content="React Performance Optimization: Best Practices for 2024 | Billy Petersson - IT Professional Portfolio"><meta name=twitter:description content="Discover essential techniques to optimize React applications for better performance, including code splitting, memoization, and lazy loading"><meta name=twitter:image content="https://peterssontech.net/images/og-default.jpg"><meta name=twitter:creator content="@billy_petersson"><meta name=twitter:site content="@billy_petersson"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","name":"React Performance Optimization: Best Practices for 2024","headline":"React Performance Optimization: Best Practices for 2024","description":"Discover essential techniques to optimize React applications for better performance, including code splitting, memoization, and lazy loading","url":"https:\/\/peterssontech.net\/blog\/react-performance-optimization\/","author":{"@type":"Person","name":"Billy Petersson","url":"https:\/\/peterssontech.net\//about/","sameAs":["https:\/\/linkedin.com\/in\/billy-petersson","https:\/\/github.com\/billy-petersson"]},"datePublished":"2024-12-08T00:00:00Z","dateModified":"2024-12-08T00:00:00Z","publisher":{"@type":"Person","name":"Billy Petersson","url":"https:\/\/peterssontech.net\/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/peterssontech.net\/blog\/react-performance-optimization\/"}}</script><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=dns-prefetch href=//cdnjs.cloudflare.com><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=icon type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=stylesheet href=/css/main.css><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css></head><body><a href=#main class=skip-link>Skip to main content</a><header class=header role=banner><nav class=navbar role=navigation aria-label="Main navigation"><div class=container><div class=nav-brand><a href=/ class=brand-link aria-label="Billy Petersson - Home"><span class=brand-name>Billy Petersson</span>
+<span class=brand-title>IT Professional</span></a></div><button class=nav-toggle id=navToggle aria-label="Toggle navigation menu" aria-expanded=false aria-controls=navMenu>
+<span></span>
+<span></span>
+<span></span></button><ul class=nav-menu id=navMenu role=menubar><li class=nav-item role=none><a href=/ class=nav-link role=menuitem>Home</a></li><li class=nav-item role=none><a href=/about/ class=nav-link role=menuitem>About</a></li><li class=nav-item role=none><a href=/skills/ class=nav-link role=menuitem>Skills</a></li><li class=nav-item role=none><a href=/experience/ class=nav-link role=menuitem>Experience</a></li><li class=nav-item role=none><a href=/projects/ class=nav-link role=menuitem>Projects</a></li><li class=nav-item role=none><a href=/blog/ class=nav-link role=menuitem>Blog</a></li><li class=nav-item role=none><a href=/contact/ class=nav-link role=menuitem>Contact</a></li></ul></div></nav></header><main id=main role=main><div class=section style=padding-top:3rem><div class=container><nav aria-label=Breadcrumb class=breadcrumb><ol class=breadcrumb-list><li class=breadcrumb-item><a href=/ aria-label=Home><i class="fas fa-home" aria-hidden=true></i>
+<span class=sr-only>Home</span></a></li><li class=breadcrumb-item><a href=https://peterssontech.net/>Billy Petersson - IT Professional Portfolio</a></li><li class=breadcrumb-item><a href=https://peterssontech.net/blog/>Tech Blog</a></li><li class="breadcrumb-item active" aria-current=page>React Performance Optimization: Best Practices for 2024</li></ol></nav><article class=single-content><header class=single-header><h1 class=single-title>React Performance Optimization: Best Practices for 2024</h1><p class=single-description>Discover essential techniques to optimize React applications for better performance, including code splitting, memoization, and lazy loading</p><div class=single-meta><span class=meta-item><i class="fas fa-calendar"></i>
+<time datetime=2024-12-08>December 8, 2024</time>
+</span><span class=meta-item><i class="fas fa-clock"></i>
+10 min read
+</span><span class=meta-item><i class="fas fa-user"></i>
+Billy Petersson</span></div></header><div class=single-body><h1 id=react-performance-optimization-best-practices-for-2024>React Performance Optimization: Best Practices for 2024</h1><p>As React applications grow in complexity, performance optimization becomes crucial for maintaining a smooth user experience. This comprehensive guide covers modern techniques and best practices for optimizing React applications in 2024.</p><h2 id=understanding-react-performance>Understanding React Performance</h2><p>Before diving into optimization techniques, it&rsquo;s important to understand how React works and where performance bottlenecks typically occur.</p><h3 id=reacts-reconciliation-process>React&rsquo;s Reconciliation Process</h3><p>React uses a virtual DOM and a reconciliation algorithm to efficiently update the UI. However, unnecessary re-renders can still cause performance issues:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// Problematic component that re-renders unnecessarily
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>count</span>, <span style=color:#a6e22e>setCount</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>users</span>, <span style=color:#a6e22e>setUsers</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>([]);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// This object is recreated on every render
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>expensiveConfig</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>theme</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;dark&#39;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>language</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;en&#39;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>features</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#39;notifications&#39;</span>, <span style=color:#e6db74>&#39;analytics&#39;</span>]
+</span></span><span style=display:flex><span>  };
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>div</span><span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Counter</span> <span style=color:#a6e22e>count</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>count</span>} <span style=color:#a6e22e>setCount</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>setCount</span>} <span style=color:#f92672>/&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>UserList</span> <span style=color:#a6e22e>users</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>users</span>} <span style=color:#a6e22e>config</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>expensiveConfig</span>} <span style=color:#f92672>/&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/div&gt;</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=1-memoization-techniques>1. Memoization Techniques</h2><h3 id=reactmemo-for-component-memoization>React.memo for Component Memoization</h3><p><code>React.memo</code> prevents unnecessary re-renders by memoizing component output:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// Before optimization
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>UserCard</span>({ <span style=color:#a6e22e>user</span>, <span style=color:#a6e22e>onEdit</span> }) {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;UserCard rendering for:&#39;</span>, <span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>name</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user-card&#34;</span><span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>h3</span><span style=color:#f92672>&gt;</span>{<span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>name</span>}<span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/h3&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>p</span><span style=color:#f92672>&gt;</span>{<span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>email</span>}<span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/p&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>button</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() =&gt; <span style=color:#a6e22e>onEdit</span>(<span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>id</span>)}<span style=color:#f92672>&gt;</span><span style=color:#a6e22e>Edit</span><span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/button&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/div&gt;</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// After optimization
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>UserCard</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>React</span>.<span style=color:#a6e22e>memo</span>(<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>UserCard</span>({ <span style=color:#a6e22e>user</span>, <span style=color:#a6e22e>onEdit</span> }) {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;UserCard rendering for:&#39;</span>, <span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>name</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user-card&#34;</span><span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>h3</span><span style=color:#f92672>&gt;</span>{<span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>name</span>}<span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/h3&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>p</span><span style=color:#f92672>&gt;</span>{<span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>email</span>}<span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/p&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>button</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() =&gt; <span style=color:#a6e22e>onEdit</span>(<span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>id</span>)}<span style=color:#f92672>&gt;</span><span style=color:#a6e22e>Edit</span><span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/button&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/div&gt;</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Custom comparison function for complex props
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>UserCard</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>React</span>.<span style=color:#a6e22e>memo</span>(<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>UserCard</span>({ <span style=color:#a6e22e>user</span>, <span style=color:#a6e22e>onEdit</span> }) {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Component implementation
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}, (<span style=color:#a6e22e>prevProps</span>, <span style=color:#a6e22e>nextProps</span>) =&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>prevProps</span>.<span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>nextProps</span>.<span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>&amp;&amp;</span>
+</span></span><span style=display:flex><span>         <span style=color:#a6e22e>prevProps</span>.<span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>updatedAt</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>nextProps</span>.<span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>updatedAt</span>;
+</span></span><span style=display:flex><span>});
+</span></span></code></pre></div><h3 id=usememo-for-expensive-calculations>useMemo for Expensive Calculations</h3><p>Use <code>useMemo</code> to memoize expensive computations:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>DataAnalytics</span>({ <span style=color:#a6e22e>data</span>, <span style=color:#a6e22e>filters</span> }) {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Expensive calculation that should be memoized
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>processedData</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useMemo</span>(() =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;Processing data...&#39;</span>);
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>data</span>
+</span></span><span style=display:flex><span>      .<span style=color:#a6e22e>filter</span>(<span style=color:#a6e22e>item</span> =&gt; <span style=color:#a6e22e>filters</span>.<span style=color:#a6e22e>includes</span>(<span style=color:#a6e22e>item</span>.<span style=color:#a6e22e>category</span>))
+</span></span><span style=display:flex><span>      .<span style=color:#a6e22e>map</span>(<span style=color:#a6e22e>item</span> =&gt; ({
+</span></span><span style=display:flex><span>        ...<span style=color:#a6e22e>item</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>score</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>calculateComplexScore</span>(<span style=color:#a6e22e>item</span>),
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>trend</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>analyzeDataTrend</span>(<span style=color:#a6e22e>item</span>.<span style=color:#a6e22e>history</span>)
+</span></span><span style=display:flex><span>      }))
+</span></span><span style=display:flex><span>      .<span style=color:#a6e22e>sort</span>((<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>) =&gt; <span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>score</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>score</span>);
+</span></span><span style=display:flex><span>  }, [<span style=color:#a6e22e>data</span>, <span style=color:#a6e22e>filters</span>]);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Memoize chart configuration
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>chartConfig</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useMemo</span>(() =&gt; ({
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;line&#39;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>data</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>processedData</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>options</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>responsive</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>plugins</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>legend</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>position</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;top&#39;</span> },
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>display</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>, <span style=color:#a6e22e>text</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Data Analysis&#39;</span> }
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }), [<span style=color:#a6e22e>processedData</span>]);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>div</span><span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Chart</span> <span style=color:#a6e22e>config</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>chartConfig</span>} <span style=color:#f92672>/&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>DataTable</span> <span style=color:#a6e22e>data</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>processedData</span>} <span style=color:#f92672>/&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/div&gt;</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=usecallback-for-function-memoization>useCallback for Function Memoization</h3><p>Memoize functions to prevent unnecessary re-renders of child components:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>TodoApp</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>todos</span>, <span style=color:#a6e22e>setTodos</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>([]);
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>filter</span>, <span style=color:#a6e22e>setFilter</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#e6db74>&#39;all&#39;</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Memoize callback functions
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>handleToggleTodo</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useCallback</span>((<span style=color:#a6e22e>id</span>) =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>setTodos</span>(<span style=color:#a6e22e>prev</span> =&gt; <span style=color:#a6e22e>prev</span>.<span style=color:#a6e22e>map</span>(<span style=color:#a6e22e>todo</span> =&gt;
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>todo</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>id</span> <span style=color:#f92672>?</span> { ...<span style=color:#a6e22e>todo</span>, <span style=color:#a6e22e>completed</span><span style=color:#f92672>:</span> <span style=color:#f92672>!</span><span style=color:#a6e22e>todo</span>.<span style=color:#a6e22e>completed</span> } <span style=color:#f92672>:</span> <span style=color:#a6e22e>todo</span>
+</span></span><span style=display:flex><span>    ));
+</span></span><span style=display:flex><span>  }, []);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>handleDeleteTodo</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useCallback</span>((<span style=color:#a6e22e>id</span>) =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>setTodos</span>(<span style=color:#a6e22e>prev</span> =&gt; <span style=color:#a6e22e>prev</span>.<span style=color:#a6e22e>filter</span>(<span style=color:#a6e22e>todo</span> =&gt; <span style=color:#a6e22e>todo</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>!==</span> <span style=color:#a6e22e>id</span>));
+</span></span><span style=display:flex><span>  }, []);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>handleAddTodo</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useCallback</span>((<span style=color:#a6e22e>text</span>) =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>newTodo</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> Date.<span style=color:#a6e22e>now</span>(),
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>text</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>completed</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>    };
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>setTodos</span>(<span style=color:#a6e22e>prev</span> =&gt; [...<span style=color:#a6e22e>prev</span>, <span style=color:#a6e22e>newTodo</span>]);
+</span></span><span style=display:flex><span>  }, []);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Filter todos based on current filter
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>filteredTodos</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useMemo</span>(() =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>switch</span> (<span style=color:#a6e22e>filter</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;active&#39;</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>todos</span>.<span style=color:#a6e22e>filter</span>(<span style=color:#a6e22e>todo</span> =&gt; <span style=color:#f92672>!</span><span style=color:#a6e22e>todo</span>.<span style=color:#a6e22e>completed</span>);
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;completed&#39;</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>todos</span>.<span style=color:#a6e22e>filter</span>(<span style=color:#a6e22e>todo</span> =&gt; <span style=color:#a6e22e>todo</span>.<span style=color:#a6e22e>completed</span>);
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>default</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>todos</span>;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }, [<span style=color:#a6e22e>todos</span>, <span style=color:#a6e22e>filter</span>]);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>div</span><span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>AddTodoForm</span> <span style=color:#a6e22e>onAdd</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>handleAddTodo</span>} <span style=color:#f92672>/&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>FilterButtons</span> <span style=color:#a6e22e>filter</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>filter</span>} <span style=color:#a6e22e>onFilterChange</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>setFilter</span>} <span style=color:#f92672>/&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>TodoList</span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>todos</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>filteredTodos</span>}
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>onToggle</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>handleToggleTodo</span>}
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>onDelete</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>handleDeleteTodo</span>}
+</span></span><span style=display:flex><span>      <span style=color:#f92672>/&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/div&gt;</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=2-code-splitting-and-lazy-loading>2. Code Splitting and Lazy Loading</h2><h3 id=dynamic-imports-with-reactlazy>Dynamic Imports with React.lazy</h3><p>Split your application into smaller chunks that load on demand:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// Lazy load components
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Dashboard</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>lazy</span>(() =&gt; <span style=color:#66d9ef>import</span>(<span style=color:#e6db74>&#39;./components/Dashboard&#39;</span>));
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>UserProfile</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>lazy</span>(() =&gt; <span style=color:#66d9ef>import</span>(<span style=color:#e6db74>&#39;./components/UserProfile&#39;</span>));
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Settings</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>lazy</span>(() =&gt; <span style=color:#66d9ef>import</span>(<span style=color:#e6db74>&#39;./components/Settings&#39;</span>));
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Route-based code splitting
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Router</span><span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Suspense</span> <span style=color:#a6e22e>fallback</span><span style=color:#f92672>=</span>{<span style=color:#f92672>&lt;</span><span style=color:#a6e22e>LoadingSpinner</span> <span style=color:#f92672>/&gt;</span>}<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Routes</span><span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Route</span> <span style=color:#a6e22e>path</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/&#34;</span> <span style=color:#a6e22e>element</span><span style=color:#f92672>=</span>{<span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Dashboard</span> <span style=color:#f92672>/&gt;</span>} <span style=color:#f92672>/&gt;</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Route</span> <span style=color:#a6e22e>path</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/profile&#34;</span> <span style=color:#a6e22e>element</span><span style=color:#f92672>=</span>{<span style=color:#f92672>&lt;</span><span style=color:#a6e22e>UserProfile</span> <span style=color:#f92672>/&gt;</span>} <span style=color:#f92672>/&gt;</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Route</span> <span style=color:#a6e22e>path</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/settings&#34;</span> <span style=color:#a6e22e>element</span><span style=color:#f92672>=</span>{<span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Settings</span> <span style=color:#f92672>/&gt;</span>} <span style=color:#f92672>/&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/Routes&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/Suspense&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/Router&gt;</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Component-based code splitting
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>AdvancedFeatures</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>showChart</span>, <span style=color:#a6e22e>setShowChart</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#66d9ef>false</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Chart</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>lazy</span>(() =&gt; <span style=color:#66d9ef>import</span>(<span style=color:#e6db74>&#39;./Chart&#39;</span>));
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>div</span><span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>button</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() =&gt; <span style=color:#a6e22e>setShowChart</span>(<span style=color:#66d9ef>true</span>)}<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>Show</span> <span style=color:#a6e22e>Advanced</span> <span style=color:#a6e22e>Chart</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/button&gt;</span>
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>      {<span style=color:#a6e22e>showChart</span> <span style=color:#f92672>&amp;&amp;</span> (
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Suspense</span> <span style=color:#a6e22e>fallback</span><span style=color:#f92672>=</span>{<span style=color:#f92672>&lt;</span><span style=color:#a6e22e>div</span><span style=color:#f92672>&gt;</span><span style=color:#a6e22e>Loading</span> <span style=color:#a6e22e>chart</span>...<span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/div&gt;}&gt;</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Chart</span> <span style=color:#f92672>/&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/Suspense&gt;</span>
+</span></span><span style=display:flex><span>      )}
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/div&gt;</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=advanced-code-splitting-patterns>Advanced Code Splitting Patterns</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// Preload components on hover
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>NavigationItem</span>({ <span style=color:#a6e22e>to</span>, <span style=color:#a6e22e>children</span> }) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>Component</span>, <span style=color:#a6e22e>setComponent</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#66d9ef>null</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>handleMouseEnter</span> <span style=color:#f92672>=</span> () =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>Component</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>import</span>(<span style=color:#e6db74>`./pages/</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>to</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>)
+</span></span><span style=display:flex><span>        .<span style=color:#a6e22e>then</span>(<span style=color:#a6e22e>module</span> =&gt; <span style=color:#a6e22e>setComponent</span>(() =&gt; <span style=color:#a6e22e>module</span>.<span style=color:#66d9ef>default</span>))
+</span></span><span style=display:flex><span>        .<span style=color:#66d9ef>catch</span>(<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>error</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  };
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Link</span> 
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>to</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>to</span>} 
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>onMouseEnter</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>handleMouseEnter</span>}
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>      {<span style=color:#a6e22e>children</span>}
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/Link&gt;</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Conditional loading based on user permissions
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>AdminPanel</span>({ <span style=color:#a6e22e>userRole</span> }) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>AdminComponent</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useMemo</span>(() =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>userRole</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;admin&#39;</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>lazy</span>(() =&gt; <span style=color:#66d9ef>import</span>(<span style=color:#e6db74>&#39;./AdminDashboard&#39;</span>));
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span>  }, [<span style=color:#a6e22e>userRole</span>]);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>AdminComponent</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>div</span><span style=color:#f92672>&gt;</span><span style=color:#a6e22e>Access</span> <span style=color:#a6e22e>denied</span><span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/div&gt;;</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Suspense</span> <span style=color:#a6e22e>fallback</span><span style=color:#f92672>=</span>{<span style=color:#f92672>&lt;</span><span style=color:#a6e22e>AdminSkeleton</span> <span style=color:#f92672>/&gt;</span>}<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>AdminComponent</span> <span style=color:#f92672>/&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/Suspense&gt;</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=3-virtual-scrolling-for-large-lists>3. Virtual Scrolling for Large Lists</h2><p>When dealing with large datasets, virtual scrolling can dramatically improve performance:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>FixedSizeList</span> <span style=color:#a6e22e>as</span> <span style=color:#a6e22e>List</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;react-window&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>VirtualizedUserList</span>({ <span style=color:#a6e22e>users</span> }) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Row</span> <span style=color:#f92672>=</span> ({ <span style=color:#a6e22e>index</span>, <span style=color:#a6e22e>style</span> }) =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>user</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>users</span>[<span style=color:#a6e22e>index</span>];
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>div</span> <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>style</span>}<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>UserCard</span> <span style=color:#a6e22e>user</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>user</span>} <span style=color:#f92672>/&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/div&gt;</span>
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>  };
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>List</span>
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>height</span><span style=color:#f92672>=</span>{<span style=color:#ae81ff>600</span>}
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>itemCount</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>users</span>.<span style=color:#a6e22e>length</span>}
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>itemSize</span><span style=color:#f92672>=</span>{<span style=color:#ae81ff>120</span>}
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>overscanCount</span><span style=color:#f92672>=</span>{<span style=color:#ae81ff>5</span>}
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>      {<span style=color:#a6e22e>Row</span>}
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/List&gt;</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Advanced virtualization with variable heights
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>VariableSizeList</span> <span style=color:#a6e22e>as</span> <span style=color:#a6e22e>VariableList</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;react-window&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>VariableHeightList</span>({ <span style=color:#a6e22e>items</span> }) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>itemHeights</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useRef</span>({});
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getItemSize</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>index</span>) =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>itemHeights</span>.<span style=color:#a6e22e>current</span>[<span style=color:#a6e22e>index</span>] <span style=color:#f92672>||</span> <span style=color:#ae81ff>100</span>;
+</span></span><span style=display:flex><span>  };
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>setItemHeight</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>index</span>, <span style=color:#a6e22e>height</span>) =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>itemHeights</span>.<span style=color:#a6e22e>current</span>[<span style=color:#a6e22e>index</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>height</span>;
+</span></span><span style=display:flex><span>  };
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Row</span> <span style=color:#f92672>=</span> ({ <span style=color:#a6e22e>index</span>, <span style=color:#a6e22e>style</span> }) =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>rowRef</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useRef</span>();
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>useEffect</span>(() =&gt; {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>rowRef</span>.<span style=color:#a6e22e>current</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>height</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>rowRef</span>.<span style=color:#a6e22e>current</span>.<span style=color:#a6e22e>getBoundingClientRect</span>().<span style=color:#a6e22e>height</span>;
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>setItemHeight</span>(<span style=color:#a6e22e>index</span>, <span style=color:#a6e22e>height</span>);
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    });
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>div</span> <span style=color:#a6e22e>ref</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>rowRef</span>} <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>style</span>}<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>ComplexItem</span> <span style=color:#a6e22e>item</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>items</span>[<span style=color:#a6e22e>index</span>]} <span style=color:#f92672>/&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/div&gt;</span>
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>  };
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>VariableList</span>
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>height</span><span style=color:#f92672>=</span>{<span style=color:#ae81ff>600</span>}
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>itemCount</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>items</span>.<span style=color:#a6e22e>length</span>}
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>itemSize</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>getItemSize</span>}
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>      {<span style=color:#a6e22e>Row</span>}
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/VariableList&gt;</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=4-image-and-asset-optimization>4. Image and Asset Optimization</h2><h3 id=progressive-image-loading>Progressive Image Loading</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>ProgressiveImage</span>({ <span style=color:#a6e22e>src</span>, <span style=color:#a6e22e>placeholder</span>, <span style=color:#a6e22e>alt</span>, <span style=color:#a6e22e>className</span> }) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>imageSrc</span>, <span style=color:#a6e22e>setImageSrc</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#a6e22e>placeholder</span>);
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>isLoaded</span>, <span style=color:#a6e22e>setIsLoaded</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#66d9ef>false</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>useEffect</span>(() =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>img</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Image</span>();
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>img</span>.<span style=color:#a6e22e>onload</span> <span style=color:#f92672>=</span> () =&gt; {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>setImageSrc</span>(<span style=color:#a6e22e>src</span>);
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>setIsLoaded</span>(<span style=color:#66d9ef>true</span>);
+</span></span><span style=display:flex><span>    };
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>img</span>.<span style=color:#a6e22e>src</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>src</span>;
+</span></span><span style=display:flex><span>  }, [<span style=color:#a6e22e>src</span>]);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>img</span>
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>imageSrc</span>}
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>alt</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>alt</span>}
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span>{<span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>className</span><span style=color:#e6db74>}</span><span style=color:#e6db74> </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>isLoaded</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#39;loaded&#39;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;loading&#39;</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>}
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span>{{
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>transition</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;opacity 0.3s&#39;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>opacity</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>isLoaded</span> <span style=color:#f92672>?</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>:</span> <span style=color:#ae81ff>0.7</span>
+</span></span><span style=display:flex><span>      }}
+</span></span><span style=display:flex><span>    <span style=color:#f92672>/&gt;</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Intersection Observer for lazy loading
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>LazyImage</span>({ <span style=color:#a6e22e>src</span>, <span style=color:#a6e22e>alt</span>, <span style=color:#a6e22e>className</span> }) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>isVisible</span>, <span style=color:#a6e22e>setIsVisible</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#66d9ef>false</span>);
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>imgRef</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useRef</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>useEffect</span>(() =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>observer</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>IntersectionObserver</span>(
+</span></span><span style=display:flex><span>      ([<span style=color:#a6e22e>entry</span>]) =&gt; {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>entry</span>.<span style=color:#a6e22e>isIntersecting</span>) {
+</span></span><span style=display:flex><span>          <span style=color:#a6e22e>setIsVisible</span>(<span style=color:#66d9ef>true</span>);
+</span></span><span style=display:flex><span>          <span style=color:#a6e22e>observer</span>.<span style=color:#a6e22e>disconnect</span>();
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      },
+</span></span><span style=display:flex><span>      { <span style=color:#a6e22e>threshold</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>0.1</span> }
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>imgRef</span>.<span style=color:#a6e22e>current</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>observer</span>.<span style=color:#a6e22e>observe</span>(<span style=color:#a6e22e>imgRef</span>.<span style=color:#a6e22e>current</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> () =&gt; <span style=color:#a6e22e>observer</span>.<span style=color:#a6e22e>disconnect</span>();
+</span></span><span style=display:flex><span>  }, []);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>div</span> <span style=color:#a6e22e>ref</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>imgRef</span>} <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>className</span>}<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>      {<span style=color:#a6e22e>isVisible</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>img</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>src</span>} <span style=color:#a6e22e>alt</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>alt</span>} <span style=color:#f92672>/&gt;</span>}
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/div&gt;</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=5-state-management-optimization>5. State Management Optimization</h2><h3 id=context-api-optimization>Context API Optimization</h3><p>Prevent unnecessary re-renders with multiple contexts:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// Split context by update frequency
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>UserContext</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createContext</span>();
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ThemeContext</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createContext</span>();
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>NotificationContext</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createContext</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Optimize context value creation
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>AppProvider</span>({ <span style=color:#a6e22e>children</span> }) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>user</span>, <span style=color:#a6e22e>setUser</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#66d9ef>null</span>);
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>theme</span>, <span style=color:#a6e22e>setTheme</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#e6db74>&#39;light&#39;</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Memoize context values
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>userValue</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useMemo</span>(() =&gt; ({
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>user</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>setUser</span>
+</span></span><span style=display:flex><span>  }), [<span style=color:#a6e22e>user</span>]);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>themeValue</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useMemo</span>(() =&gt; ({
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>theme</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>setTheme</span>
+</span></span><span style=display:flex><span>  }), [<span style=color:#a6e22e>theme</span>]);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>UserContext</span>.<span style=color:#a6e22e>Provider</span> <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>userValue</span>}<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>ThemeContext</span>.<span style=color:#a6e22e>Provider</span> <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>themeValue</span>}<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>        {<span style=color:#a6e22e>children</span>}
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/ThemeContext.Provider&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/UserContext.Provider&gt;</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Custom hooks for context consumption
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>useUser</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>context</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useContext</span>(<span style=color:#a6e22e>UserContext</span>);
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>context</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> Error(<span style=color:#e6db74>&#39;useUser must be used within UserProvider&#39;</span>);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>context</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=optimized-state-updates>Optimized State Updates</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// Batch state updates
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>useOptimizedState</span>(<span style=color:#a6e22e>initialState</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>state</span>, <span style=color:#a6e22e>setState</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#a6e22e>initialState</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>updateState</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useCallback</span>((<span style=color:#a6e22e>updates</span>) =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>setState</span>(<span style=color:#a6e22e>prevState</span> =&gt; ({
+</span></span><span style=display:flex><span>      ...<span style=color:#a6e22e>prevState</span>,
+</span></span><span style=display:flex><span>      ...<span style=color:#a6e22e>updates</span>
+</span></span><span style=display:flex><span>    }));
+</span></span><span style=display:flex><span>  }, []);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> [<span style=color:#a6e22e>state</span>, <span style=color:#a6e22e>updateState</span>];
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Usage
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>UserForm</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>formState</span>, <span style=color:#a6e22e>updateFormState</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useOptimizedState</span>({
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;&#39;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>email</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;&#39;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>phone</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;&#39;</span>
+</span></span><span style=display:flex><span>  });
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>handleSubmit</span> <span style=color:#f92672>=</span> () =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Batch multiple updates
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>updateFormState</span>({
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>isSubmitting</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>errors</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>null</span>
+</span></span><span style=display:flex><span>    });
+</span></span><span style=display:flex><span>  };
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>form</span> <span style=color:#a6e22e>onSubmit</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>handleSubmit</span>}<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>      {<span style=color:#75715e>/* Form fields */</span>}
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/form&gt;</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=6-performance-monitoring>6. Performance Monitoring</h2><h3 id=custom-performance-hooks>Custom Performance Hooks</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>usePerformanceMonitor</span>(<span style=color:#a6e22e>componentName</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>useEffect</span>(() =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>startTime</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>performance</span>.<span style=color:#a6e22e>now</span>();
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> () =&gt; {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>endTime</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>performance</span>.<span style=color:#a6e22e>now</span>();
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>renderTime</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>endTime</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>startTime</span>;
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>renderTime</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>16</span>) { <span style=color:#75715e>// Longer than one frame
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>warn</span>(
+</span></span><span style=display:flex><span>          <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>componentName</span><span style=color:#e6db74>}</span><span style=color:#e6db74> took </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>renderTime</span>.<span style=color:#a6e22e>toFixed</span>(<span style=color:#ae81ff>2</span>)<span style=color:#e6db74>}</span><span style=color:#e6db74>ms to render`</span>
+</span></span><span style=display:flex><span>        );
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    };
+</span></span><span style=display:flex><span>  });
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Usage
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>ExpensiveComponent</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>usePerformanceMonitor</span>(<span style=color:#e6db74>&#39;ExpensiveComponent&#39;</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Component logic
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>return</span> <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>div</span><span style=color:#f92672>&gt;</span>...<span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/div&gt;;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=react-devtools-profiler-api>React DevTools Profiler API</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Profiler</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;react&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>onRenderCallback</span>(<span style=color:#a6e22e>id</span>, <span style=color:#a6e22e>phase</span>, <span style=color:#a6e22e>actualDuration</span>, <span style=color:#a6e22e>baseDuration</span>, <span style=color:#a6e22e>startTime</span>, <span style=color:#a6e22e>commitTime</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Log performance data
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;Profiler data:&#39;</span>, {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>id</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>phase</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>actualDuration</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>baseDuration</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>startTime</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>commitTime</span>
+</span></span><span style=display:flex><span>  });
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Send to analytics service
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>analytics</span>.<span style=color:#a6e22e>track</span>(<span style=color:#e6db74>&#39;component_render&#39;</span>, {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>componentId</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>id</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>renderTime</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>actualDuration</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>phase</span>
+</span></span><span style=display:flex><span>  });
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Profiler</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;App&#34;</span> <span style=color:#a6e22e>onRender</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onRenderCallback</span>}<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Dashboard</span> <span style=color:#f92672>/&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/Profiler&gt;</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=7-bundle-analysis-and-optimization>7. Bundle Analysis and Optimization</h2><h3 id=webpack-bundle-analyzer>Webpack Bundle Analyzer</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install bundle analyzer</span>
+</span></span><span style=display:flex><span>npm install --save-dev webpack-bundle-analyzer
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Add to package.json scripts</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>&#34;analyze&#34;</span>: <span style=color:#e6db74>&#34;npm run build &amp;&amp; npx webpack-bundle-analyzer build/static/js/*.js&#34;</span>
+</span></span></code></pre></div><h3 id=tree-shaking-optimization>Tree Shaking Optimization</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// Import only what you need
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>debounce</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;lodash&#39;</span>; <span style=color:#75715e>// ❌ Imports entire lodash
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>debounce</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;lodash/debounce&#39;</span>; <span style=color:#75715e>// ✅ Imports only debounce
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Use babel-plugin-import for automatic optimization
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// .babelrc
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>{
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;plugins&#34;</span><span style=color:#f92672>:</span> [
+</span></span><span style=display:flex><span>    [<span style=color:#e6db74>&#34;import&#34;</span>, {
+</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;libraryName&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;lodash&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;libraryDirectory&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;camel2DashComponentName&#34;</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>    }]
+</span></span><span style=display:flex><span>  ]
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=8-advanced-optimization-patterns>8. Advanced Optimization Patterns</h2><h3 id=component-composition-patterns>Component Composition Patterns</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// Higher-order component for performance optimization
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>withPerformanceOptimization</span>(<span style=color:#a6e22e>WrappedComponent</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>React</span>.<span style=color:#a6e22e>memo</span>(<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>OptimizedComponent</span>(<span style=color:#a6e22e>props</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>memoizedProps</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useMemo</span>(() =&gt; {
+</span></span><span style=display:flex><span>      <span style=color:#75715e>// Filter out frequently changing props
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>      <span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>onMouseMove</span>, <span style=color:#a6e22e>onScroll</span>, ...<span style=color:#a6e22e>stableProps</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>props</span>;
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>stableProps</span>;
+</span></span><span style=display:flex><span>    }, [<span style=color:#a6e22e>props</span>]);
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>WrappedComponent</span> {...<span style=color:#a6e22e>memoizedProps</span>} <span style=color:#f92672>/&gt;</span>;
+</span></span><span style=display:flex><span>  });
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Render prop pattern for complex logic
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>DataFetcher</span>({ <span style=color:#a6e22e>children</span>, <span style=color:#a6e22e>url</span> }) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>data</span>, <span style=color:#a6e22e>setData</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#66d9ef>null</span>);
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>loading</span>, <span style=color:#a6e22e>setLoading</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#66d9ef>true</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>useEffect</span>(() =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>fetchData</span>(<span style=color:#a6e22e>url</span>).<span style=color:#a6e22e>then</span>(<span style=color:#a6e22e>data</span> =&gt; {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>setData</span>(<span style=color:#a6e22e>data</span>);
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>setLoading</span>(<span style=color:#66d9ef>false</span>);
+</span></span><span style=display:flex><span>    });
+</span></span><span style=display:flex><span>  }, [<span style=color:#a6e22e>url</span>]);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>children</span>({ <span style=color:#a6e22e>data</span>, <span style=color:#a6e22e>loading</span> });
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Usage
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>UserList</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>DataFetcher</span> <span style=color:#a6e22e>url</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/api/users&#34;</span><span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>      {({ <span style=color:#a6e22e>data</span>, <span style=color:#a6e22e>loading</span> }) =&gt; (
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>loading</span> <span style=color:#f92672>?</span> <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Spinner</span> <span style=color:#f92672>/&gt;</span> <span style=color:#f92672>:</span> <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>UserTable</span> <span style=color:#a6e22e>users</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>data</span>} <span style=color:#f92672>/&gt;</span>
+</span></span><span style=display:flex><span>      )}
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/DataFetcher&gt;</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=performance-checklist>Performance Checklist</h2><h3 id=development-phase>Development Phase</h3><ul><li><input disabled type=checkbox> Use React.memo for components that receive the same props frequently</li><li><input disabled type=checkbox> Implement useMemo for expensive calculations</li><li><input disabled type=checkbox> Use useCallback for event handlers and functions passed as props</li><li><input disabled type=checkbox> Split large components into smaller, focused components</li><li><input disabled type=checkbox> Implement code splitting for routes and heavy components</li></ul><h3 id=build-phase>Build Phase</h3><ul><li><input disabled type=checkbox> Analyze bundle size with webpack-bundle-analyzer</li><li><input disabled type=checkbox> Implement tree shaking for unused code elimination</li><li><input disabled type=checkbox> Optimize images and assets</li><li><input disabled type=checkbox> Configure proper caching headers</li><li><input disabled type=checkbox> Minimize and compress JavaScript and CSS</li></ul><h3 id=runtime-phase>Runtime Phase</h3><ul><li><input disabled type=checkbox> Monitor performance with React DevTools Profiler</li><li><input disabled type=checkbox> Implement virtual scrolling for large lists</li><li><input disabled type=checkbox> Use Progressive Web App features for caching</li><li><input disabled type=checkbox> Monitor Core Web Vitals</li><li><input disabled type=checkbox> Set up error boundary components</li></ul><h2 id=conclusion>Conclusion</h2><p>React performance optimization is an ongoing process that requires careful measurement and testing. Start with the biggest impact optimizations like code splitting and memoization, then progressively enhance based on your specific application&rsquo;s needs.</p><p>Remember that premature optimization can lead to complex code without meaningful performance gains. Always measure first, optimize second, and test thoroughly to ensure your optimizations actually improve the user experience.</p><hr><p><em>Have you implemented any of these optimization techniques in your React applications? Share your experiences and any additional tips in the comments below!</em></p><h2 id=further-reading>Further Reading</h2><ul><li><a href=https://react.dev/learn/render-and-commit>React Official Performance Guide</a></li><li><a href=https://web.dev/react/>Web.dev React Performance</a></li><li><a href=https://react.dev/blog/2018/09/10/introducing-the-react-profiler>React DevTools Profiler</a></li><li><a href=https://bundlephobia.com/>Bundle Analysis Tools</a></li></ul></div><footer class=single-footer><div class=tags><h4>Tags:</h4><a href=/tags/react/ class=tag>React</a>
+<a href=/tags/performance/ class=tag>Performance</a>
+<a href=/tags/javascript/ class=tag>JavaScript</a>
+<a href=/tags/frontend/ class=tag>Frontend</a>
+<a href=/tags/optimization/ class=tag>Optimization</a></div></footer></article></div></div><style>.single-content{max-width:800px;margin:0 auto}.single-header{text-align:center;margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border-color)}.single-title{font-size:3rem;font-weight:700;color:var(--text-primary);margin-bottom:1rem;line-height:1.2}.single-description{font-size:1.25rem;color:var(--text-secondary);margin-bottom:2rem;line-height:1.6}.single-meta{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;color:var(--text-secondary);font-size:.9rem}.meta-item{display:flex;align-items:center;gap:.5rem}.single-body{line-height:1.8;color:var(--text-primary)}.single-body h1,.single-body h2,.single-body h3,.single-body h4,.single-body h5,.single-body h6{color:var(--text-primary);margin-top:2rem;margin-bottom:1rem;font-weight:600}.single-body h1{font-size:2.5rem;border-bottom:2px solid var(--primary-color);padding-bottom:.5rem}.single-body h2{font-size:2rem;color:var(--primary-color)}.single-body h3{font-size:1.5rem}.single-body h4{font-size:1.25rem}.single-body p{margin-bottom:1.5rem}.single-body ul,.single-body ol{margin-bottom:1.5rem;padding-left:2rem}.single-body li{margin-bottom:.5rem}.single-body blockquote{border-left:4px solid var(--primary-color);padding-left:1.5rem;margin:2rem 0;font-style:italic;color:var(--text-secondary)}.single-body code{background-color:var(--bg-secondary);padding:.2rem .4rem;border-radius:.25rem;font-family:courier new,monospace;font-size:.9rem}.single-body pre{background-color:var(--bg-secondary);padding:1.5rem;border-radius:.5rem;overflow-x:auto;margin:2rem 0}.single-body pre code{background-color:transparent;padding:0}.single-body table{width:100%;border-collapse:collapse;margin:2rem 0}.single-body th,.single-body td{padding:.75rem;text-align:left;border-bottom:1px solid var(--border-color)}.single-body th{background-color:var(--bg-secondary);font-weight:600}.single-body a{color:var(--primary-color);text-decoration:none;transition:var(--transition)}.single-body a:hover{color:var(--secondary-color);text-decoration:underline}.single-footer{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border-color)}.tags{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}.tags h4{margin:0;color:var(--text-primary)}@media(max-width:768px){.single-title{font-size:2rem}.single-description{font-size:1.125rem}.single-meta{flex-direction:column;gap:1rem}.single-body h1{font-size:2rem}.single-body h2{font-size:1.5rem}.tags{flex-direction:column;align-items:flex-start}}</style></main><footer class=footer role=contentinfo><div class=container><div class=footer-content><div class=footer-info><h3>Billy Petersson</h3><p>Professional IT portfolio showcasing expertise in software development, system administration, and technology solutions</p></div><div class=footer-links><h4>Quick Links</h4><nav aria-label="Footer navigation"><ul><li><a href=/>Home</a></li><li><a href=/about/>About</a></li><li><a href=/skills/>Skills</a></li><li><a href=/experience/>Experience</a></li><li><a href=/projects/>Projects</a></li><li><a href=/blog/>Blog</a></li><li><a href=/contact/>Contact</a></li></ul></nav></div><div class=footer-social><h4>Connect</h4><div class=social-links role=list><a href=https://linkedin.com/in/billy-petersson target=_blank rel="noopener noreferrer" aria-label="LinkedIn Profile" role=listitem><i class="fab fa-linkedin" aria-hidden=true></i>
+<span class=sr-only>LinkedIn</span>
+</a><a href=https://github.com/billy-petersson target=_blank rel="noopener noreferrer" aria-label="GitHub Profile" role=listitem><i class="fab fa-github" aria-hidden=true></i>
+<span class=sr-only>GitHub</span>
+</a><a href=mailto:billy@peterssontech.net aria-label="Send Email" role=listitem><i class="fas fa-envelope" aria-hidden=true></i>
+<span class=sr-only>Email</span></a></div></div></div><div class=footer-bottom><p>&copy; 2025 Billy Petersson. All rights reserved.</p></div></div></footer><script src=/js/main.js></script></body></html>

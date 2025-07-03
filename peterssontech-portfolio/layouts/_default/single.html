@@ -1,0 +1,248 @@
+{{ define "main" }}
+<div class="section" style="padding-top: 3rem;">
+    <div class="container">
+        {{ partial "breadcrumb.html" . }}
+        <article class="single-content">
+            <header class="single-header">
+                <h1 class="single-title">{{ .Title }}</h1>
+                {{ if .Description }}
+                <p class="single-description">{{ .Description }}</p>
+                {{ end }}
+                {{ if .Date }}
+                <div class="single-meta">
+                    <span class="meta-item">
+                        <i class="fas fa-calendar"></i>
+                        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+                    </span>
+                    {{ if .Params.readingTime }}
+                    <span class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        {{ .Params.readingTime }} min read
+                    </span>
+                    {{ end }}
+                    {{ if .Params.author }}
+                    <span class="meta-item">
+                        <i class="fas fa-user"></i>
+                        {{ .Params.author }}
+                    </span>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </header>
+            
+            <div class="single-body">
+                {{ .Content }}
+            </div>
+            
+            {{ if .Params.tags }}
+            <footer class="single-footer">
+                <div class="tags">
+                    <h4>Tags:</h4>
+                    {{ range .Params.tags }}
+                    <a href="/tags/{{ . | urlize }}/" class="tag">{{ . }}</a>
+                    {{ end }}
+                </div>
+            </footer>
+            {{ end }}
+        </article>
+    </div>
+</div>
+
+<style>
+.single-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.single-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.single-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.single-description {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.single-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.single-body {
+    line-height: 1.8;
+    color: var(--text-primary);
+}
+
+.single-body h1,
+.single-body h2,
+.single-body h3,
+.single-body h4,
+.single-body h5,
+.single-body h6 {
+    color: var(--text-primary);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.single-body h1 {
+    font-size: 2.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+.single-body h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.single-body h3 {
+    font-size: 1.5rem;
+}
+
+.single-body h4 {
+    font-size: 1.25rem;
+}
+
+.single-body p {
+    margin-bottom: 1.5rem;
+}
+
+.single-body ul,
+.single-body ol {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+.single-body li {
+    margin-bottom: 0.5rem;
+}
+
+.single-body blockquote {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+.single-body code {
+    background-color: var(--bg-secondary);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+.single-body pre {
+    background-color: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 2rem 0;
+}
+
+.single-body pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.single-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+}
+
+.single-body th,
+.single-body td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.single-body th {
+    background-color: var(--bg-secondary);
+    font-weight: 600;
+}
+
+.single-body a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.single-body a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+.single-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.tags {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.tags h4 {
+    margin: 0;
+    color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+    .single-title {
+        font-size: 2rem;
+    }
+    
+    .single-description {
+        font-size: 1.125rem;
+    }
+    
+    .single-meta {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .single-body h1 {
+        font-size: 2rem;
+    }
+    
+    .single-body h2 {
+        font-size: 1.5rem;
+    }
+    
+    .tags {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+</style>
+{{ end }}

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Billy Petersson — Azure / Cloud Engineer</title>
+  <meta name="description" content="Billy Petersson — Microsoft Certified Azure / Cloud Engineer based in Örebro, Sweden. I build and manage cloud infrastructure with Azure, Bicep and Azure DevOps." />
+  <meta name="author" content="Billy Petersson" />
+  <meta name="theme-color" content="#0a0e17" />
+  <link rel="canonical" href="https://peterssontech.net/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Billy Petersson — Azure / Cloud Engineer" />
+  <meta property="og:description" content="Microsoft Certified Azure / Cloud Engineer. Infrastructure as code with Bicep and Azure DevOps." />
+  <meta property="og:url" content="https://peterssontech.net/" />
+  <meta name="twitter:card" content="summary" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0e17'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' fill='%2338bdf8' text-anchor='middle'%3EBP%3C/text%3E%3C/svg%3E" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Billy Petersson",
+    "jobTitle": "Azure / Cloud Engineer",
+    "worksFor": { "@type": "Organization", "name": "Innofactor" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Örebro", "addressCountry": "SE" },
+    "url": "https://peterssontech.net",
+    "email": "billy@peterssontech.net",
+    "sameAs": [
+      "https://www.linkedin.com/in/billypetersson/",
+      "https://github.com/billypetersson"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Atmospheric layers -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="bg-noise" aria-hidden="true"></div>
+
+  <!-- Skip link -->
+  <a class="skip-link" href="#about">Skip to content</a>
+
+  <!-- Nav -->
+  <header class="nav" id="top">
+    <a class="nav__brand" href="#top">
+      <span class="nav__brand-mark">BP</span>
+      <span class="nav__brand-text">peterssontech<span class="accent">.net</span></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#stack">Stack</a>
+      <a href="#experience">Experience</a>
+      <a href="#certs">Certifications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme" title="Toggle theme">
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero__inner">
+        <p class="eyebrow reveal"><span class="eyebrow__dot"></span> Azure / Cloud Engineer · Örebro, Sweden</p>
+        <h1 class="hero__title reveal" data-delay="1">Billy<br>Petersson</h1>
+        <p class="hero__lead reveal" data-delay="2">
+          I build and manage cloud infrastructure with
+          <strong>Azure</strong>, <strong>Bicep</strong> and <strong>Azure DevOps</strong>.
+        </p>
+        <div class="hero__cta reveal" data-delay="3">
+          <a class="btn btn--primary" href="#contact">Get in touch</a>
+          <a class="btn" href="https://www.linkedin.com/in/billypetersson/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/billypetersson" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+
+      <!-- Identity manifest -->
+      <aside class="manifest reveal" data-delay="2" aria-label="Profile summary">
+        <div class="manifest__bar">
+          <span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span>
+          <span class="manifest__file">identity.bicep</span>
+        </div>
+        <pre class="manifest__code"><code><span class="c-key">resource</span> <span class="c-var">engineer</span> <span class="c-str">'profile@2026'</span> = {
+  <span class="c-prop">name</span>:        <span class="c-str">'Billy Petersson'</span>
+  <span class="c-prop">role</span>:        <span class="c-str">'Azure / Cloud Engineer'</span>
+  <span class="c-prop">company</span>:     <span class="c-str">'Innofactor'</span>
+  <span class="c-prop">location</span>:    <span class="c-str">'Örebro, SE'</span>
+  <span class="c-prop">certified</span>:   <span class="c-bool">true</span>
+  <span class="c-prop">focus</span>: [
+    <span class="c-str">'Infrastructure as Code'</span>
+    <span class="c-str">'CI/CD Pipelines'</span>
+    <span class="c-str">'Cloud Security'</span>
+  ]
+}</code></pre>
+      </aside>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="section__head">
+        <span class="section__index">01</span>
+        <h2 class="section__title">About</h2>
+      </div>
+      <div class="about">
+        <div class="about__text">
+          <p class="lead">
+            I'm a Microsoft Certified Azure Engineer at <strong>Innofactor</strong>, where I design,
+            build and manage cloud infrastructure — mostly through <strong>Azure DevOps</strong> and
+            <strong>Bicep</strong>.
+          </p>
+          <p>
+            My path into the cloud ran through years of hands-on IT consulting and infrastructure work
+            across Örebro and Stockholm. That foundation — real systems, real users, real uptime —
+            shapes how I approach the cloud today: infrastructure as code, repeatable pipelines, and
+            security baked in from the start rather than bolted on later.
+          </p>
+          <p>
+            I care about clean, reviewable infrastructure that a team can trust and reason about — the
+            kind you can read like a manifest and deploy with confidence.
+          </p>
+        </div>
+        <ul class="about__facts">
+          <li><span class="k">Now</span><span class="v">Azure Engineer @ Innofactor</span></li>
+          <li><span class="k">Based</span><span class="v">Örebro, Sweden</span></li>
+          <li><span class="k">Core</span><span class="v">Azure · Bicep · Azure DevOps</span></li>
+          <li><span class="k">Since</span><span class="v">IT since 2002 · Cloud since 2022</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Stack -->
+    <section class="section" id="stack">
+      <div class="section__head">
+        <span class="section__index">02</span>
+        <h2 class="section__title">Stack</h2>
+      </div>
+      <div class="stack">
+        <article class="stack__card reveal">
+          <h3>Cloud &amp; Platform</h3>
+          <ul class="tags">
+            <li class="tag tag--core">Microsoft Azure</li>
+            <li class="tag">Azure Networking</li>
+            <li class="tag">Azure Storage</li>
+            <li class="tag">Identity &amp; Access</li>
+            <li class="tag">Cloud Security</li>
+          </ul>
+        </article>
+        <article class="stack__card reveal" data-delay="1">
+          <h3>Infrastructure as Code</h3>
+          <ul class="tags">
+            <li class="tag tag--core">Bicep</li>
+            <li class="tag">ARM Templates</li>
+            <li class="tag">Resource Modules</li>
+            <li class="tag">Landing Zones</li>
+          </ul>
+        </article>
+        <article class="stack__card reveal" data-delay="2">
+          <h3>DevOps &amp; Automation</h3>
+          <ul class="tags">
+            <li class="tag tag--core">Azure DevOps</li>
+            <li class="tag tag--core">CI/CD Pipelines</li>
+            <li class="tag">GitHub Actions</li>
+            <li class="tag">PowerShell</li>
+            <li class="tag">Bash</li>
+          </ul>
+        </article>
+        <article class="stack__card reveal" data-delay="3">
+          <h3>Tools &amp; Systems</h3>
+          <ul class="tags">
+            <li class="tag">Git</li>
+            <li class="tag">Docker</li>
+            <li class="tag">Linux</li>
+            <li class="tag">Windows Server</li>
+            <li class="tag">Networking</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section" id="experience">
+      <div class="section__head">
+        <span class="section__index">03</span>
+        <h2 class="section__title">Experience</h2>
+      </div>
+      <ol class="timeline">
+        <li class="timeline__item reveal">
+          <span class="timeline__period">Feb 2024 — Present</span>
+          <div class="timeline__body">
+            <h3 class="timeline__role">Azure Engineer <span class="at">@ Innofactor</span></h3>
+            <p class="timeline__meta">Full-time · Stockholm · Hybrid</p>
+            <p>Build and manage cloud infrastructure as code with Bicep and Azure DevOps — pipelines,
+              secure storage, and identity-aware deployments for enterprise environments.</p>
+          </div>
+        </li>
+        <li class="timeline__item reveal">
+          <span class="timeline__period">Feb 2022 — Feb 2024</span>
+          <div class="timeline__body">
+            <h3 class="timeline__role">Cloud Engineer <span class="at">@ Omegapoint</span></h3>
+            <p class="timeline__meta">Full-time · Örebro County</p>
+            <p>Cloud engineering on Microsoft Azure — infrastructure, automation and security for
+              consulting clients.</p>
+          </div>
+        </li>
+        <li class="timeline__item reveal">
+          <span class="timeline__period">Sep 2021 — Feb 2022</span>
+          <div class="timeline__body">
+            <h3 class="timeline__role">IT Consultant <span class="at">@ Nethouse</span></h3>
+            <p class="timeline__meta">Full-time · Örebro County</p>
+            <p>IT consulting and infrastructure delivery.</p>
+          </div>
+        </li>
+        <li class="timeline__item reveal">
+          <span class="timeline__period">Jul 2020 — Aug 2021</span>
+          <div class="timeline__body">
+            <h3 class="timeline__role">IT Consultant <span class="at">@ Ricoh IT Partner</span></h3>
+            <p class="timeline__meta">Full-time · Örebro County</p>
+            <p>Client IT systems, support and infrastructure projects.</p>
+          </div>
+        </li>
+        <li class="timeline__item reveal">
+          <span class="timeline__period">Jul 2019 — Jul 2020</span>
+          <div class="timeline__body">
+            <h3 class="timeline__role">IT Consultant / Technician <span class="at">@ Visolit</span></h3>
+            <p class="timeline__meta">Örebro County · (formerly IT-mästaren)</p>
+            <p>On-site and remote IT infrastructure, support and systems administration.</p>
+          </div>
+        </li>
+        <li class="timeline__item timeline__item--side reveal">
+          <span class="timeline__period">Jan 2010 — Present</span>
+          <div class="timeline__body">
+            <h3 class="timeline__role">Founder &amp; CEO <span class="at">@ Monkey Grip Nordic AB</span></h3>
+            <p class="timeline__meta">Self-employed · Örebro · <a href="https://www.monkeygrip.se" target="_blank" rel="noopener">monkeygrip.se</a></p>
+            <p>Founded and run a Nordic jiu-jitsu apparel brand — product, brand and operations.</p>
+          </div>
+        </li>
+        <li class="timeline__earlier reveal">
+          <span class="timeline__period">Earlier</span>
+          <p>Security Officer · SBS Skuthälla-Berg Säkerhet (2016–2023) &nbsp;·&nbsp; Support Technician · twenty4help (2002–2003)</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Certifications -->
+    <section class="section" id="certs">
+      <div class="section__head">
+        <span class="section__index">04</span>
+        <h2 class="section__title">Certifications</h2>
+      </div>
+      <div class="certs">
+        <article class="cert reveal">
+          <span class="cert__badge">MS</span>
+          <div>
+            <h3>Azure Fundamentals</h3>
+            <p>Microsoft Certified · AZ-900</p>
+          </div>
+          <span class="cert__year">2022</span>
+        </article>
+        <article class="cert reveal" data-delay="1">
+          <span class="cert__badge">MS</span>
+          <div>
+            <h3>Security, Compliance &amp; Identity Fundamentals</h3>
+            <p>Microsoft Certified · SC-900</p>
+          </div>
+          <span class="cert__year">2022</span>
+        </article>
+        <article class="cert reveal" data-delay="2">
+          <span class="cert__badge cert__badge--skill">★</span>
+          <div>
+            <h3>Implement security through a pipeline using Azure DevOps</h3>
+            <p>Microsoft Applied Skills</p>
+          </div>
+          <span class="cert__year">2024</span>
+        </article>
+        <article class="cert reveal" data-delay="3">
+          <span class="cert__badge cert__badge--skill">★</span>
+          <div>
+            <h3>Secure storage for Azure Files &amp; Azure Blob Storage</h3>
+            <p>Microsoft Applied Skills</p>
+          </div>
+          <span class="cert__year">2024</span>
+        </article>
+      </div>
+      <p class="certs__note">Previously held: Microsoft Certified — Azure Administrator Associate (AZ-104).</p>
+    </section>
+
+    <!-- Beyond -->
+    <section class="section section--beyond" id="beyond">
+      <div class="section__head">
+        <span class="section__index">05</span>
+        <h2 class="section__title">Beyond the cloud</h2>
+      </div>
+      <div class="beyond">
+        <p class="lead">
+          Off the keyboard, I train and compete in Brazilian jiu-jitsu — and I founded the apparel brand
+          behind a lot of grappling wardrobes in the Nordics.
+        </p>
+        <ul class="beyond__list">
+          <li>
+            <span class="belt" aria-hidden="true"><i></i><i></i><i></i><i class="red"></i><i class="red"></i></span>
+            <span><strong>BJJ Black Belt</strong> — years on the mats, still learning.</span>
+          </li>
+          <li><span class="beyond__ic">⚖</span><span><strong>ADCC Referee</strong> — C-license.</span></li>
+          <li><span class="beyond__ic">▲</span><span><strong>Founder, Monkey Grip Nordic</strong> — jiu-jitsu wear at <a href="https://www.monkeygrip.se" target="_blank" rel="noopener">monkeygrip.se</a>.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section section--contact" id="contact">
+      <div class="section__head">
+        <span class="section__index">06</span>
+        <h2 class="section__title">Contact</h2>
+      </div>
+      <div class="contact">
+        <p class="contact__lead">Got a cloud project, a role, or just want to talk infrastructure? Reach out.</p>
+        <div class="contact__grid">
+          <a class="contact__card" href="mailto:billy@peterssontech.net">
+            <span class="contact__k">Email</span>
+            <span class="contact__v">billy@peterssontech.net</span>
+          </a>
+          <a class="contact__card" href="https://www.linkedin.com/in/billypetersson/" target="_blank" rel="noopener">
+            <span class="contact__k">LinkedIn</span>
+            <span class="contact__v">/in/billypetersson</span>
+          </a>
+          <a class="contact__card" href="https://github.com/billypetersson" target="_blank" rel="noopener">
+            <span class="contact__k">GitHub</span>
+            <span class="contact__v">/billypetersson</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© <span id="year">2026</span> Billy Petersson</span>
+    <span class="footer__mono">Örebro, Sweden · built &amp; self-hosted</span>
+  </footer>
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

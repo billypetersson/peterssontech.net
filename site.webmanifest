@@ -1,0 +1,19 @@
+{
+  "name": "Billy Petersson — Azure / Cloud Engineer",
+  "short_name": "Billy Petersson",
+  "description": "Microsoft Certified Azure / Cloud Engineer. Infrastructure as code with Bicep and Azure DevOps.",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0e17'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' fill='%2338bdf8' text-anchor='middle'%3EBP%3C/text%3E%3C/svg%3E",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#0a0e17",
+  "background_color": "#0a0e17",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr"
+}

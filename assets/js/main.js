@@ -1,4 +1,4 @@
-/* peterssontech.net — interactions: theme, reveals, active nav */
+/* billypetersson.se — interactions: theme, reveals, active nav */
 (function () {
   'use strict';
 

@@ -1,4 +1,4 @@
-# peterssontech.net
+# billypetersson.se
 
 Personal site for **Billy Petersson** — Azure / Cloud Engineer, Örebro, Sweden.
 
@@ -11,7 +11,7 @@ little vanilla JavaScript. Fast, accessible, dark/light themed.
 index.html            # the whole page
 assets/css/style.css  # design system + layout
 assets/js/main.js     # theme toggle, scroll reveals, active nav
-CNAME                 # custom domain (peterssontech.net)
+CNAME                 # custom domain (billypetersson.se)
 robots.txt, sitemap.xml, site.webmanifest
 .github/workflows/deploy.yml   # publishes to GitHub Pages
 ```
@@ -21,7 +21,7 @@ robots.txt, sitemap.xml, site.webmanifest
 Two ways the same files are served:
 
 1. **Self-hosted (primary)** — served by nginx on the home server (ProDesk) and exposed
-   through a Cloudflare Tunnel at `peterssontech.net` / `www.peterssontech.net`.
+   through a Cloudflare Tunnel at `billypetersson.se` / `www.billypetersson.se`.
 2. **GitHub Pages (mirror)** — `deploy.yml` uploads the repo root as a Pages artifact.
 
 ## Local preview
